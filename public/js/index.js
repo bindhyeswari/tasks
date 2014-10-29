@@ -20,9 +20,9 @@ function Router() {
         for ( var view in self.views ) {
             self.views[view].element.style.display = 'none';
         }
-        console.log(self.views[path].element);
+        console.log(path);
         // show current view
-        self.views[path].element.style.display = 'block';
+        // console.log(self.views[path].element.style.display);
     };
 
     for ( var view in self.views ) {
@@ -30,7 +30,8 @@ function Router() {
         console.log(self.views[view]);
         self.views[view].trigger.addEventListener('click', function (event) {
             event.preventDefault();
-            self.show(view);
+            console.log(/\/#\/(.+)/gmi.exec(this.href));
+            self.show(/\/#\/(.+)/gmi.exec(this.href)[1]);
         });
     }
 
