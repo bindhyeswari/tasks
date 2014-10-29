@@ -4,7 +4,7 @@ function Router() {
             trigger: document.getElementById('a_create_task'),
             element: document.getElementById('create_task_container')
         },
-        '/show_task': {
+        '/show_tasks': {
             trigger: document.getElementById('a_show_tasks'),
             element: document.getElementById('show_tasks_container')
         }
@@ -22,7 +22,8 @@ function Router() {
         }
         console.log(path);
         // show current view
-        // console.log(self.views[path].element.style.display);
+        console.log(self.views[path]);
+        self.views[path].element.style.display = 'block';
     };
 
     for ( var view in self.views ) {
@@ -30,8 +31,8 @@ function Router() {
         console.log(self.views[view]);
         self.views[view].trigger.addEventListener('click', function (event) {
             event.preventDefault();
-            console.log(/\/#\/(.+)/gmi.exec(this.href));
-            self.show(/\/#\/(.+)/gmi.exec(this.href)[1]);
+            console.log(/\/#(\/.+)/gmi.exec(this.href));
+            self.show(/\/#(\/.+)/gmi.exec(this.href)[1]);
         });
     }
 
