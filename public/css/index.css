@@ -14,7 +14,7 @@ form {
 }
 
 header {
-    background-color: rgba(0,0,0,1);
+    background-color: rgba(0,0,0,0.9);
     color: white;
     position: fixed;
     width: 100%;
@@ -57,6 +57,10 @@ div#create_task_container {
     margin: 3em;
 }
 
+div#show_tasks_container {
+    margin: 3em;
+}
+
 
 div#create_task_container > div {
     text-align: center;
@@ -65,4 +69,37 @@ div#create_task_container > div {
 a.clickable {
     text-decoration: none;
     color: #0c4270;
+}
+
+div.task {
+    background-color: #eee;
+    border: 1px solid #aaa;
+    margin-bottom: 1em;
+}
+
+div.task_row {
+    padding: 0.5em 0.75em;
+    border-bottom: 1px solid #ddd;
+}
+
+div.task_row:last-child {
+    border-bottom: none;
+}
+
+span.caption {
+    color: #888;
+    font-size: 0.75em;
+    text-transform: lowercase;
+}
+
+div.task[data-priority="1"] {
+    background-color: #eee;
+}
+
+div.task[data-priority="2"] {
+    background-color: #efefef;
+}
+
+div.task[data-priority="3"] {
+    background-color: white;
 }

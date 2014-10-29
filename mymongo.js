@@ -29,11 +29,13 @@ var task1 = new TaskModel({
 
 
 router.get('/', function (req, res) { // req.query.
-    TaskModel.find({ priority: req.query.priority, status: req.query.status }, function (err, results) {
+    TaskModel.find(function (err, results) {
         if (err) {
+            console.log(err);
             res.status(500).json({ details: results });
         }
         else {
+            console.log(results);
             res.status(200).json(results);
         }
     });
