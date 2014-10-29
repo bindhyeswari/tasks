@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/css/base.css' />
+      <title>Tasks</title>
+      <link rel='stylesheet' href='/css/base.css' />
+      <link rel='stylesheet' href='/css/index.css' />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <header>
+        <nav>
+            <ul>
+                <li class="company_logo">Task Manager</li>
+                <li class="right"><a id="a_create_tasks" href="#">Create Task</a></li>
+                <li class="right"><a id="a_show_tasks" href="#">Show Tasks</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="create_task_container">
+        <h1>Create A Task</h1>
+        <div>
+            <form name="form_task">
+                <input type="text" name="description" placeholder="description"/>
+                <input type="number" max="3" min="0" name="status" placeholder="status"/>
+                <input type="number" max="3" min="1" name="priority" placeholder="priority"/>
+                <input type="text" name="tags" placeholder="tags"/>
+                <input type="text" name="notes" placeholder="notes"/>
+            </form>
+            <a href="#" class="clickable">Create Task</a>
+        </div>
+    </div>
+    <div id="show_tasks_container">
+        All tasks here ...
+    </div>
+
+    <script src="/js/index.js"></script>
+
   </body>
 </html>

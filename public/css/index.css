@@ -1,0 +1,68 @@
+h1 {
+    font-weight: 200;
+    font-size: 2em;
+    text-align: center;
+}
+
+input {
+    width: calc(100% - 1em - 2px);
+    margin-bottom: 1em;
+}
+
+form {
+    text-align: center;
+}
+
+header {
+    background-color: rgba(0,0,0,1);
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+li {
+    float: left;
+    margin: 0.5em;
+    font-size: 0.8em;
+}
+
+li.company_logo {
+    color: #777;
+}
+
+li.right {
+    float: right;
+}
+
+li > a {
+    color: #888;
+    text-decoration: none;
+
+    transition: color 250ms ease;
+}
+
+li > a:hover {
+    transition: color 250ms ease;
+    color: white;
+}
+
+div#create_task_container {
+    margin: 3em;
+}
+
+
+div#create_task_container > div {
+    text-align: center;
+}
+
+a.clickable {
+    text-decoration: none;
+    color: #0c4270;
+}
