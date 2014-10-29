@@ -20,11 +20,14 @@ function Router() {
         for ( var view in self.views ) {
             self.views[view].element.style.display = 'none';
         }
+        console.log(self.views[path].element);
         // show current view
         self.views[path].element.style.display = 'block';
     };
 
     for ( var view in self.views ) {
+        console.log(view);
+        console.log(self.views[view]);
         self.views[view].trigger.addEventListener('click', function (event) {
             event.preventDefault();
             self.show(view);
