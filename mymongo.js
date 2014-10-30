@@ -56,16 +56,19 @@ router.post('/', function (req, res) {
 });
 
 router.delete('/:id', function (req, res) {
-    TaskModel.remove({ _id: req.params.id }, function (err, results) {
-        if (err) {
-            console.log(err);
-            res.status(500).json({ details: results });
-        }
-        else {
-            console.log(results);
-            res.status(200).json(results);
-        }
-    });
+    setTimeout(function () {
+        TaskModel.remove({ _id: req.params.id }, function (err, results) {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ details: results });
+            }
+            else {
+                console.log(results);
+                res.status(200).json(results);
+            }
+        });
+    }, 500);
+
 });
 
 module.exports = router;

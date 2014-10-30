@@ -92,6 +92,7 @@ function createTaskDivElement(task) {
     var icons = createElement('div', 'icons', '', container);
     createElement('i', 'fa fa-times', '', icons).addEventListener('click', function (event) {
         var taskdiv = this.parentNode.parentNode;
+        this.className = 'fa fa-spinner spin';
         var xhr = new XMLHttpRequest();
         xhr.open('DELETE', '/tasks/' + taskdiv.dataset.id);
         xhr.addEventListener('readystatechange', function () {
@@ -142,6 +143,8 @@ function createServerTask() {
 
 
 }
+
+
 
 
 
