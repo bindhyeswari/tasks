@@ -145,6 +145,14 @@ function createServerTask() {
 }
 
 
+document.getElementById('dummytask').addEventListener('click', function () {
+    var spans = this.getElementsByClassName('data');
+    for (var i = 0, len = spans.length; i < len; i++) {
+        spans[i].setAttribute('contenteditable', 'true');
+    }
+});
+
+
 
 
 
