@@ -3,12 +3,14 @@ function Router() {
         '/create_task': {
             trigger: document.getElementById('a_create_task'),
             element: document.getElementById('create_task_container'),
-            init: []
+            init: [],
+            unload: []
         },
         '/show_tasks': {
             trigger: document.getElementById('a_show_tasks'),
             element: document.getElementById('show_tasks_container'),
-            init: []
+            init: [],
+            unload: []
         }
     };
 
@@ -20,6 +22,9 @@ function Router() {
         this.path = path;
         // hide all views
         for ( var view in self.views ) {
+            self.views[view].unload.forEach(function (fn) {
+                fn();
+            });
             self.views[view].element.style.display = 'none';
         }
         console.log(path);
@@ -56,13 +61,16 @@ router.views['/show_tasks'].init.push(function () {
         if ( xhr.status === 200 && xhr.readyState === 4 ) {
             var data = JSON.parse(xhr.responseText);
             console.log(data);
-            for (var i = 0, len = data.length; i < len; i++) {
+            for (var i = data.length - 1; i > -1; i--) {
                 document.getElementById('show_tasks_container').appendChild(createTaskDivElement(data[i]));
             }
         }
     });
     xhr.send();
 
+});
+router.views['/show_tasks'].unload.push(function () {
+    router.views['/show_tasks'].element.innerHTML = '';
 });
 
 console.log(router.views);
@@ -88,6 +96,36 @@ function createElement(type, className, innerHTML, parent) {
     return element;
 }
 
+document.getElementById('a_create_server_task').addEventListener('click', createServerTask);
+
+function createServerTask() {
+    // get all data from form
+    var form = document.forms.form_task;
+    var task_object = {
+        description: form.description.value,
+        priority: form.priority.value,
+        status: form.status.value,
+        tags: form.tags.value,
+        notes: form.notes.value
+    };
+
+    console.log(task_object);
+
+    // make a post call
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/tasks');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.addEventListener('readystatechange', function () {
+        if ( xhr.status === 200 && xhr.readyState === 4 ) {
+            var data = JSON.parse(xhr.responseText);
+            // show confirmation to client
+            console.log(data);
+        }
+    });
+    xhr.send(JSON.stringify(task_object));
+
+
+}
 
 
 

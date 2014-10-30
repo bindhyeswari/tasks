@@ -90,6 +90,7 @@ span.caption {
     color: #888;
     font-size: 0.75em;
     text-transform: lowercase;
+    margin: 0.25em;
 }
 
 div.task[data-priority="1"] {
