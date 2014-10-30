@@ -48,6 +48,9 @@ function Router() {
         });
     }
 
+    // todo: to be removed prior prod
+    self.views['/show_tasks'].element.style.display = 'block';
+
 }
 
 var router = new Router();
@@ -60,7 +63,7 @@ router.views['/show_tasks'].init.push(function () {
     xhr.addEventListener('readystatechange', function () {
         if ( xhr.status === 200 && xhr.readyState === 4 ) {
             var data = JSON.parse(xhr.responseText);
-            console.log(data);
+            // console.log(data);
             for (var i = data.length - 1; i > -1; i--) {
                 document.getElementById('show_tasks_container').appendChild(createTaskDivElement(data[i]));
             }
@@ -73,10 +76,11 @@ router.views['/show_tasks'].unload.push(function () {
     router.views['/show_tasks'].element.innerHTML = '';
 });
 
-console.log(router.views);
+// console.log(router.views);
 
 function createTaskDivElement(task) {
     var container = createElement('div', 'task', '');
+    container.setAttribute('data-id', task._id);
     container.setAttribute('data-priority', task.priority);
     var selected = ['description', 'status', 'tags', 'notes'];
     for ( var i = 0; i < selected.length; i++ ) {
@@ -85,6 +89,18 @@ function createTaskDivElement(task) {
         createElement('span', 'data', task[prop], row);
         createElement('span', 'caption', prop, row);
     }
+    var icons = createElement('div', 'icons', '', container);
+    createElement('i', 'fa fa-times', '', icons).addEventListener('click', function (event) {
+        var taskdiv = this.parentNode.parentNode;
+        var xhr = new XMLHttpRequest();
+        xhr.open('DELETE', '/tasks/' + taskdiv.dataset.id);
+        xhr.addEventListener('readystatechange', function () {
+            if ( xhr.status === 200 && xhr.readyState === 4 ) {
+                taskdiv.parentNode.removeChild(taskdiv);
+            }
+        });
+        xhr.send();
+    });
     return container;
 }
 

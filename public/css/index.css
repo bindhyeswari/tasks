@@ -19,6 +19,8 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
+    z-index: 100;
+
 }
 
 ul {
@@ -75,7 +77,31 @@ div.task {
     background-color: #eee;
     border: 1px solid #aaa;
     margin-bottom: 1em;
+    position: relative;
 }
+
+div.icons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.25em;
+}
+
+div.icons > i {
+    color: rgba(50,50,50,0.7);
+    cursor: pointer;
+}
+
+div.icons > i.selected {
+    color: rgba(64, 140, 70, 0.81);;
+    cursor: pointer;
+}
+
+div.icons > i:hover {
+    color: rgba(97, 4, 0, 0.81);
+    text-shadow: 0 0 10px rgba(255, 105, 102, 0.81);
+}
+
 
 div.task_row {
     padding: 0.5em 0.75em;
@@ -103,4 +129,8 @@ div.task[data-priority="2"] {
 
 div.task[data-priority="3"] {
     background-color: white;
+}
+
+input {
+    font-size: 0.85em;
 }
